@@ -293,5 +293,7 @@ int closenb(int fd);
 #define PROC_EVENT_SIGNAL	0x02	/* process has caught signal */
 int proceventmask(unsigned int mask);
 
+int sys_setdl(long deadline);
+
 #endif /* _SYSLIB_H */
 

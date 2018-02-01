@@ -75,6 +75,7 @@ SRCS+=  \
 	sys_schedctl.c \
 	sys_schedule.c \
 	sys_setalarm.c \
+	sys_setdl.c \
 	sys_setgrant.c \
 	sys_settime.c \
 	sys_sigreturn.c \

@@ -1792,6 +1792,7 @@ static struct proc * pick_proc(void)
  */
   register struct proc *rp;			/* process to run */
   struct proc **rdy_head;
+  struct proc *p;
   int q;				/* iterate over queues */
 
   /* Check each of the scheduling queues for ready processes. The number of
@@ -1803,6 +1804,11 @@ static struct proc * pick_proc(void)
 	if(!(rp = rdy_head[q])) {
 		TRACE(VF_PICKPROC, printf("cpu %d queue %d empty\n", cpuid, q););
 		continue;
+	}
+	for (p = rp->p_nextready; p != NULL; p = p->p_nextready) {
+		if (p->deadline != 0 && rp->deadline > p->deadline) {
+			rp = p;
+		}
 	}
 	assert(proc_is_runnable(rp));
 	if (priv(rp)->s_flags & BILLABLE)	 	

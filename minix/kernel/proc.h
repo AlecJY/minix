@@ -131,6 +131,8 @@ struct proc {
    */
   struct { reg_t r1, r2, r3; } p_defer;
 
+  long deadline;	/* deadline of the process */
+
 #if DEBUG_TRACE
   int p_schedules;
 #endif
