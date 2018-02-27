@@ -324,7 +324,9 @@ void context_stop(struct proc * p)
 		p->p_cpu_time_left = 0;
 #else
 		if (tsc_delta < p->p_cpu_time_left) {
-			p->p_cpu_time_left -= tsc_delta;
+			if (p->deadline != 0 && p->deadline >= get_realtime()) {
+				p->p_cpu_time_left -= tsc_delta;
+			}
 		} else {
 			p->p_cpu_time_left = 0;
 		}

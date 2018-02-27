@@ -1806,7 +1806,9 @@ static struct proc * pick_proc(void)
 		continue;
 	}
 	for (p = rp->p_nextready; p != NULL; p = p->p_nextready) {
-		if (p->deadline != 0 && rp->deadline > p->deadline) {
+		if (get_realtime() > p->deadline) {
+			p->deadline = 0;
+		} else if (p->deadline != 0 && rp->deadline > p->deadline) {
 			rp = p;
 		}
 	}
