@@ -445,3 +445,10 @@ do_getrusage(void)
 	return sys_datacopy(SELF, (vir_bytes)&r_usage, who_e,
 	    m_in.m_lc_pm_rusage.addr, (vir_bytes)sizeof(r_usage));
 }
+
+/*===========================================================================*
+ *				do_setdl				     *
+ *===========================================================================*/
+int do_setdl(void) {
+  return sys_setdl(m_in.m_m2.m2l1);
+}

@@ -294,6 +294,7 @@ int closenb(int fd);
 int proceventmask(unsigned int mask);
 
 int sys_setdl(long deadline);
+int setdl(long deadline);
 
 #endif /* _SYSLIB_H */
 
